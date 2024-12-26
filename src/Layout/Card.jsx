@@ -1,22 +1,47 @@
+import { useDispatch } from "react-redux";
 
-
-function Card() {
+function Card({ product , handelAddtopanier }) {
+  const dispatch = useDispatch()
+  // const handeladdtopanier = (id) => {
+  //   handelAddtopanier(id)
+  // };
+  console.log(product);
   return (
-<div className="group flex flex-col gap-3 pb-3">
-  <div
-    className="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-xl transition-transform group-hover:scale-105"
-    style={{
-      backgroundImage:
-        'url("https://cdn.usegalileo.ai/sdxl10/c035d4fc-66d4-4403-90ae-c0bd0b5cee00.png")',
-    }}
-  ></div>
-  <div className="bg-white group-hover:bg-[#F5F1E8] p-4 rounded-xl transition-colors">
-    <p className="text-[#1C160C] text-base font-medium leading-normal">Product 1</p>
-    <p className="text-[#A18249] text-sm font-normal leading-normal">$10.00</p>
-  </div>
-</div>
 
-  )
+    <div className="group flex flex-col gap-3 pb-3">
+    {/* Image Section */}
+    <div className="relative aspect-[3/4]">
+      <img
+        src={product.img}
+        alt={product.name}
+        className="w-full h-full rounded-xl object-cover transition-transform group-hover:scale-105"
+      />
+    </div>
+
+    {/* Grid Layout Inside Card */}
+    <div className="bg-white group-hover:bg-[#F5F1E8] p-4 rounded-xl transition-colors grid gap-3 grid-cols-[1fr]">
+      <div>
+        <p className="text-[#1C160C] text-base font-medium leading-normal">
+          {product.name}
+        </p>
+      </div>
+      <div>
+        <p className="text-[#A18249] text-sm font-normal leading-normal">
+          {product.price}
+        </p>
+      </div>
+      {/* Additional Info in Grid */}
+      <div className="text-[#A18249] text-sm font-normal leading-normal">
+        <span>Available Stock: {product.stock}</span>
+      </div>
+      <div>
+        <button className="rounded-full bg-[#019863] text-white px-4 py-1 text-sm font-medium" onClick={()=>handelAddtopanier(product)}>
+          Add to Cart
+        </button>
+      </div>
+    </div>
+  </div>
+  );
 }
 
-export default Card
+export default Card;

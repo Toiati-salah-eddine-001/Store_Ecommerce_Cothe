@@ -14,6 +14,9 @@ function Home() {
   const Changincomponent= (comp)=>{
     setCrurentcomponnent(comp)
   }
+
+ 
+  
   
   return (
     <div className="relative flex size-full min-h-screen flex-col bg-[#FFFFFF] group/design-root overflow-x-hidden" style={{ fontFamily: "\"Plus Jakarta Sans\", \"Noto Sans\", sans-serif" }}>

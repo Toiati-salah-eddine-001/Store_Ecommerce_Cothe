@@ -1,11 +1,17 @@
-let initialisation= 1;
+import {Data} from "../../data/Data"
+
+let initialisation= Data[0].products;
+
 export const ProdutReducer=(state=initialisation, action)=>{
-    switch(action.type){
-        case 'ADD_PRODUCT':
-            return state+1;
-        case 'REMOVE_PRODUCT':
-            return state-1;
-        default:
-            return state;
-    }
+     switch(action.type){
+         case 'Test_a':
+             return "product";
+
+         case 'Test_b':
+             return "nothing";
+
+         default:
+             return state;
+     }
+ 
 }

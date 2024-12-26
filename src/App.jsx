@@ -4,10 +4,13 @@
 // import Pannier from "./Component/Pannier"
 // import Productpage from "./Component/Productpage"
 import Headre from "./Layout/Headre"
+// import {Data} from "./data/Data";
 
 function App() {
+  // console.log(Data[0]["products"].men)
   return (
     <>
+    {}
     <div className=" flex flex-col ">
        <Headre/>
     </div>
