@@ -1,42 +1,59 @@
-
+import { useDispatch, useSelector } from "react-redux";
+import ItemsPanier from "../Layout/ItemsPanier";
+import {AddQte , MinceQt , DeletProduct} from "../Redux/Action/PanierAction"
+import { useState } from "react";
 
 function Pannier() {
+  // const [ActionOperation,setActionOperation]=useState({
+
+  //   DeleteProductPanier,
+  // })
+  const ProductPannier = useSelector((state) => state.Panier);
+  const dispatch = useDispatch()
+  console.log(ProductPannier);
+
+  const addQuntitée= (item) => {
+    const {id , qte} = item;
+    console.log(Number(id),qte);
+    dispatch(AddQte(Number(id)))
+    console.log('dazt ou nn')
+  }
+  const MinceProduct= (item) => {
+    const {id } = item;
+    console.log(Number(id));
+    dispatch(MinceQt(Number(id)))
+    console.log('Na9es Sf')
+  }
+
+  const DeleteProductPanier= (item) => {
+    const {id } = item;
+    console.log(Number(id));
+    dispatch(DeletProduct(Number(id)))
+    console.log('Delete Sf')
+  }
+
+  const TotalPrice = ()=>{
+    const totale = ProductPannier.reduce((TotalPrice,Prod)=>{
+      return TotalPrice + (Prod.qte * Prod.price)
+    },0)
+    return totale.toFixed(2) 
+  }
+
   return (
-    <div className="w-full mt-8 px-4 max-w-7xl mx-auto">
-  {/* Product Row */}
-  <div className="flex items-center justify-between border-b pb-4">
-    {/* Product Info */}
-    <div className="flex items-center">
-      <img
-        src="https://via.placeholder.com/50" // Replace with your product image URL
-        alt="Product Thumbnail"
-        className="w-12 h-12 rounded-md object-cover mr-4"
-      />
-      <div>
-        <h3 className="text-lg font-medium text-gray-800">Product Name</h3>
-        <p className="text-sm text-gray-500">Price: $XX.XX</p>
+    <>
+      <div className="w-full mt-8 px-4 max-w-7xl mx-auto">
+        {/* Product Row */}
+        {ProductPannier.map((item)=>(
+         <ItemsPanier key={item.id} item={item} AddQuantite={addQuntitée} MinceProduct={MinceProduct} DeleteProductPanier={DeleteProductPanier}  />  // on passe l'item directement au composant ItemsPanier pour afficher les détails du produit
+        ))}
+        {/* <ItemsPanier /> */}
       </div>
-    </div>
-
-    {/* Quantity Controls */}
-    <div className="flex items-center">
-      <button className="w-8 h-8 flex items-center justify-center bg-gray-200 text-gray-600 rounded-full">
-        -
-      </button>
-      <span className="mx-4 text-gray-800 text-lg">1</span>
-      <button className="w-8 h-8 flex items-center justify-center bg-gray-200 text-gray-600 rounded-full">
-        +
-      </button>
-    </div>
-  </div>
-
-  {/* Total Price */}
-  <div className="text-center mt-6">
-    <p className="text-lg font-medium text-gray-800">Total Price: $XX.XX</p>
-  </div>
-</div>
-
-  )
+      {/* Total Price */}
+      <div className="text-center mt-6">
+        <p className="text-lg font-medium text-gray-800">Total Price: {TotalPrice()} $ </p>
+      </div>
+    </>
+  );
 }
 
-export default Pannier
+export default Pannier;
