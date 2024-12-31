@@ -4,7 +4,7 @@ let initialisation= Data[0].products;
 
 export const ProdutReducer=(state=initialisation, action)=>{
      switch(action.type){
-         case 'Test_a':
+         case 'SEARCH_PRODUCT':
              return "product";
 
          case 'Test_b':
