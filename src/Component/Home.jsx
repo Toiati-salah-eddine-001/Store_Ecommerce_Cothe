@@ -8,7 +8,7 @@ import AllProduct from "./AllProduct"
 // import KidsProduct from "./KidsProduct"
 import { useState } from "react"
 
-function Home({searchResult}) {
+function Home() {
   const [Crurentcomponnent,setCrurentcomponnent]=useState(<AllProduct/>)
 
   const Changincomponent= (comp)=>{
@@ -25,7 +25,7 @@ function Home({searchResult}) {
       <div className="px-40 flex flex-1 justify-center py-5">
         <div className="layout-content-container flex flex-col max-w-[960px] flex-1">
         {/* -----------Nav bar Homm --------- */}
-          <Navhomme Changincomponent={Changincomponent}  searchResult={searchResult}  />
+          <Navhomme Changincomponent={Changincomponent}    />
           {/* <Routes>
           <Route path="/" element={<AllProduct/>} />
           <Route path="/home/women" element={<WomenProduct/>} />

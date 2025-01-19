@@ -37,7 +37,7 @@ function ItemsPanier({item, AddQuantite , MinceProduct ,DeleteProductPanier}) {
         +
       </button>
       <button className="w-8 h-8 flex items-center justify-center bg-red-500 text-white rounded-full ml-4" 
-      onClick={()=>DeleteProductPanier(item)}
+      onClick={()=>confirm('Do You Want To Remove Product',DeleteProductPanier(item))}
       >
         ×
       </button>

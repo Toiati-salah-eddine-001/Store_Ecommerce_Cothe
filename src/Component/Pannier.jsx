@@ -2,6 +2,8 @@ import { useDispatch, useSelector } from "react-redux";
 import ItemsPanier from "../Layout/ItemsPanier";
 import {AddQte , MinceQt , DeletProduct} from "../Redux/Action/PanierAction"
 import { useState } from "react";
+import { ToastContainer, toast, Bounce } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Pannier() {
   // const [ActionOperation,setActionOperation]=useState({
@@ -30,6 +32,17 @@ function Pannier() {
     console.log(Number(id));
     dispatch(DeletProduct(Number(id)))
     console.log('Delete Sf')
+    toast.error('This Product Has been Deleted', {
+      position: "top-center",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: 0,
+      theme: "light",
+      transition: Bounce,
+      });
   }
 
   const TotalPrice = ()=>{
@@ -52,6 +65,7 @@ function Pannier() {
       <div className="text-center mt-6">
         <p className="text-lg font-medium text-gray-800">Total Price: {TotalPrice()} $ </p>
       </div>
+      <ToastContainer />
     </>
   );
 }

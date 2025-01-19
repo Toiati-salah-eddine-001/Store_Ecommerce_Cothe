@@ -3,7 +3,7 @@ import AllProduct from "./AllProduct"
 import WomenProduct from "./WomenProduct"
 import MenProduct from "./MenProduct"
 import KidsProduct from "./KidsProduct"
-function Navhomme({Changincomponent , searchResult}) {
+function Navhomme({Changincomponent}) {
 
   // const handelAddPanier= ()=>{
   //     console.log("this is function")
@@ -19,7 +19,7 @@ function Navhomme({Changincomponent , searchResult}) {
   <div className="flex border-b border-[#E9DFCE] px-4 justify-between">
     <p
       className="flex flex-col items-center justify-center text-[#A18249] pb-[13px] pt-4 flex-1 relative group"
-      onClick={()=>Changincomponent(<AllProduct  handeladdpanier={HandelAddPanier} searchResult={searchResult} />)}
+      onClick={()=>Changincomponent(<AllProduct  handeladdpanier={HandelAddPanier} />)}
     >
       <p className="text-[#A18249] text-sm font-bold leading-normal tracking-[0.015em] group-hover:text-[#1C160C]">
         All Products

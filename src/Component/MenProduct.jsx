@@ -3,8 +3,11 @@ import Card from "../Layout/Card"
 import {create}from "../Redux/Action/PanierAction"
 
 function MenProduct() {
-  const MenProduct = useSelector(state=>state.ProductsList.men)
+  // const MenProduct = useSelector(state=>state.ProductsList.men)
+
+  const searchTerm = useSelector((state) => state.search);
   const dispatch = useDispatch()
+  
 
   const handelAddtopanier = (product) => {
      // const { id } = product;
@@ -18,13 +21,19 @@ function MenProduct() {
      console.log("Product added to the panier");
  
    };
-  console.log(MenProduct)
+
+   const SearchData = searchTerm.dataSearcher;
+   const SeatchOnlyMane = SearchData.filter((product) => product.name.includes("Men's"))
+
+   
+   console.log(SearchData)
+  
   return (
     <>
-        <div className="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
       {/* <div>AllProduct</div> */}
-      {MenProduct.length > 0 ? (
-        MenProduct.map((product) => (
+      {SeatchOnlyMane.length > 0 ? (
+        SeatchOnlyMane.map((product) => (
           <Card key={product.id} product={product} handelAddtopanier={handelAddtopanier}/>
         ))
       ) : (
