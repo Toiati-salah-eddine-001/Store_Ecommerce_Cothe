@@ -1,33 +1,26 @@
-
 import { Routes, Route, Link } from "react-router-dom";
 import Home from "../Component/Home";
 import About from "../Component/About";
 import Contact from "../Component/Contact";
 import Pannier from "../Component/Pannier";
-import {  useState } from "react";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import SearchBare from "./SearchBare";
 
-// export const ProductSearchContext = createContext();
-
 function Headre() {
   const [ShowDropdown, setShowDropdown] = useState(false);
-  const [search,seetsearch] = useState('');
-  console.log(search)
-
-  const stateProduct=useSelector(state=>state.ProductsList);
+  const stateProduct = useSelector(state => state.ProductsList);
+  const search = useSelector(state => state.search);
   const allProducts = [
-    ...stateProduct.men,
-    ...stateProduct.women,
-    ...stateProduct.kids,
+    ...(Array.isArray(stateProduct.men) ? stateProduct.men : []),
+    ...(Array.isArray(stateProduct.women) ? stateProduct.women : []),
+    ...(Array.isArray(stateProduct.kids) ? stateProduct.kids : []),
   ];
   
-  const searchResult = allProducts.filter(product => product.name.toLowerCase().includes(search.toLowerCase()));
-  console.log(searchResult)
+  // const searchResult = allProducts.filter(product => product.name.toLowerCase().includes(search.toLowerCase()));
 
-  const PanierListe= useSelector((state)=>state.Panier)
+  const PanierListe = useSelector((state) => state.Panier);
   return (
-
     <div>
       <header className="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#F4EFE6] px-10 py-3">
         <div className="flex items-center gap-8">
@@ -95,31 +88,17 @@ function Headre() {
                   <path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z" />
                 </svg>
               </div>
-              {/* <------ INPUT SEARCHE -----------> */}
-
-              <input
-                placeholder="Search"
-                className="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-xl text-[#1C160C] focus:outline-0 focus:ring-0 border-none bg-[#F4EFE6] focus:border-none h-full placeholder:text-[#A18249] px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal"
-              
-                value={search}
-                onChange={(e) => seetsearch(e.target.value)}
-              />
-
-              {/* <SearchBare/> */}
-             
-              {/* <----------------------> */}
+              <SearchBare />
             </div>
           </label>
           <div className="flex gap-2 relative">
-            {/* Circle Outside the Link */}
-            {PanierListe.length>0 && 
+            {PanierListe.length > 0 && 
             <span
               className="absolute top-[-10px] left-[0px] flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-white text-xs font-bold z-10 p-1"
             >
               {PanierListe.length}
             </span>
           }
-            {/* Pannier Link */}
             <Link
               to="/Pannier"
               className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 px-4 bg-[#019863] text-[#FFFFFF] text-sm font-bold leading-normal tracking-[0.015em]"
@@ -129,7 +108,6 @@ function Headre() {
               </span>
             </Link>
             <div className="relative inline-block">
-              {/* User Button */}
               <button
                 className="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 bg-[#F4EFE6] text-[#1C160C] gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5"
                 onClick={() => {
@@ -153,8 +131,6 @@ function Headre() {
                   </svg>
                 </div>
               </button>
-
-              {/* Dropdown Menu */}
               {ShowDropdown && (
                 <div className="absolute right-0 mt-2 w-40 bg-[#F4EFE6] border border-[#A18249] rounded-xl shadow-lg z-50">
                   <a
@@ -176,15 +152,12 @@ function Headre() {
         </div>
       </header>
       <Routes>
-        <Route path="/" element={<Home searchResult={searchResult}/>} />
-        {/* <Route path="/" element={<Home />} /> */}
-        {/* <Route path="/shop" element={<Shop />} /> */}
+        <Route path="/" element={<Home  />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/Pannier" element={<Pannier />} />
       </Routes>
     </div>
-
   );
 }
 

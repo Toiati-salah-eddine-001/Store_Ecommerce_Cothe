@@ -8,5 +8,5 @@ import { SearchReducer } from "../Reducer/SearchReducer";
 export const RootReducer = combineReducers({
     ProductsList:ProdutReducer,
     Panier: ReducerPnnier,
-    searchBare:SearchReducer
+    search:SearchReducer
 })

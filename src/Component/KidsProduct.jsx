@@ -4,7 +4,7 @@ import Card from "../Layout/Card";
 import {create}from "../Redux/Action/PanierAction"
 
 function KidsProduct() {
-  const KidsProducts = useSelector(state => state.ProductsList.kids || []); 
+  const searchTerm = useSelector((state) => state.search);
   const dispatch = useDispatch()
 
    const handelAddtopanier = (product) => {
@@ -20,11 +20,14 @@ function KidsProduct() {
   
     };
 
+    const SearchData = searchTerm.dataSearcher;
+    const SeatchOnlyKids = SearchData.filter((product) => product.name.includes("Kids"))
+
   return (
     <>
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-4">
-        {KidsProducts.length > 0 ? (
-          KidsProducts.map((product) => (
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+        {SeatchOnlyKids.length > 0 ? (
+          SeatchOnlyKids.map((product) => (
             <Card key={product.id} product={product}  handelAddtopanier={handelAddtopanier}/>
           ))
         ) : (
